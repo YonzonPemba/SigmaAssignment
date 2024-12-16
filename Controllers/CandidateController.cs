@@ -14,17 +14,20 @@ namespace SigmaAssignment.Controllers
     {
         private readonly ICandidateService _inMemoryCandidateService;
         private readonly IValidator<CandidateDTO> _validator;
+        private readonly ILogger<CandidateController> _logger;
 
-        public CandidateController(ICandidateService inMemoryCandidateService, IValidator<CandidateDTO> validator) 
+        public CandidateController(ICandidateService inMemoryCandidateService, IValidator<CandidateDTO> validator, ILogger<CandidateController> logger)
         {
             this._inMemoryCandidateService = inMemoryCandidateService;
             this._validator = validator;
+            this._logger = logger;
         }
 
 
         [HttpPost]
         public async Task<IActionResult> AddOrUpdateCandidate([FromBody] CandidateDTO candidate)
         {
+            _logger.LogInformation("Starting candidate creation process.");
             var validationResult = _validator.Validate(candidate);
 
             if (!validationResult.IsValid)
