@@ -12,8 +12,8 @@ namespace SigmaAssignment.Data.DTO
 
         public string PhoneNumber { get; set; }  
 
-        public TimeSpan StartTime { get; set; } 
-        public TimeSpan EndTime { get; set; }  
+        public string StartTime { get; set; } 
+        public string EndTime { get; set; }  
 
         public string LinkedInProfileUrl { get; set; }  
 

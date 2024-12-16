@@ -3,14 +3,18 @@
     public class BaseResponse<T> where T : class
     {
         public T Data { get; set; }
-        public int StatusCode { get; set; }
+        public bool Success { get; set; }
         public string Message { get; set; }
-        public object Errors { get; set; }
+        public List<string> Errors { get; set; }
 
-        public BaseResponse(T data, int statusCode, string message, object errors = null)
+        public BaseResponse()
+        {
+        }
+
+        public BaseResponse(T data, bool success, string message, List<string> errors = null)
         {
             Data = data;
-            StatusCode = statusCode;
+            Success = success;
             Message = message;
             Errors = errors;
         }

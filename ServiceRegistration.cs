@@ -1,4 +1,5 @@
-﻿using SigmaAssignment.Mappings;
+﻿using FluentValidation;
+using SigmaAssignment.Data.DTO.Validators;
 using SigmaAssignment.Repositories.Implementations;
 using SigmaAssignment.Repositories.Interfaces;
 using SigmaAssignment.Services.Implementations;
@@ -13,6 +14,10 @@ namespace SigmaAssignment
             // Add scoped services
             services.AddScoped<ICandidateRepository, InMemoryCandidateRepository>();
             services.AddScoped<ICandidateService, InMemoryCandidateService>();
+
+            // Add validations
+            services.AddValidatorsFromAssemblyContaining<CandidateValidator>();
+
 
         }
     }
