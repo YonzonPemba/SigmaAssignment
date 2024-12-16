@@ -29,7 +29,9 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 
-app.MapControllers();
+// configure global exception handling
+app.UseMiddleware<GlobalExceptionHandlerMiddleware>();
 
+app.MapControllers();
 
 app.Run();
