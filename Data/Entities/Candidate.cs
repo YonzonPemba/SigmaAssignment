@@ -28,4 +28,3 @@ namespace SigmaAssignment.Data.Entities
     }
 
 }
-}

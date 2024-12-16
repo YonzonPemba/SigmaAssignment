@@ -11,6 +11,9 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseInMemoryDatabase("InMemoryDb"));
 
+//manage dependency injection
+builder.Services.AddServices();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
