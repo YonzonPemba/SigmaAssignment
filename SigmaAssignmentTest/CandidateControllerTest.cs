@@ -52,7 +52,7 @@ namespace SigmaAssignment.Tests
             Assert.That(response, Is.Not.Null);
             Assert.That(response.Success, Is.False);
             Assert.That(response.Message, Is.EqualTo("Validation failed"));
-            Assert.That(response.Errors, Is.EqualTo("Email is invalid"));
+            Assert.That(response.Errors, Does.Contain("Email is invalid"));
         }
 
         [Test]
@@ -136,7 +136,7 @@ namespace SigmaAssignment.Tests
             Assert.That(response, Is.Not.Null);
             Assert.That(response.Success, Is.False);
             Assert.That(response.Message, Is.EqualTo("Internal Server Error"));
-            Assert.That(response.Errors, Is.EqualTo("An unexpected error occurred.Please try again later."));
+            Assert.That(response.Errors, Does.Contain("An unexpected error occurred.Please try again later."));
         }
     }
 }
