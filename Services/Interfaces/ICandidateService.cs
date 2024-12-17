@@ -4,6 +4,6 @@ namespace SigmaAssignment.Services.Interfaces
 {
     public interface ICandidateService
     {
-        Task AddOrUpdateCandidateAsync(CandidateDTO candidate);
+        Task<CandidateDTO> AddOrUpdateCandidateAsync(CandidateDTO candidate);
     }
 }

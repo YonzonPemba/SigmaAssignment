@@ -17,7 +17,7 @@ namespace SigmaAssignment.Services.Implementations
             this._mapper = mapper;
         }
 
-        public async Task AddOrUpdateCandidateAsync(CandidateDTO candidate)
+        public async Task<CandidateDTO> AddOrUpdateCandidateAsync(CandidateDTO candidate)
         {
             // Check if the candidate exists by email (unique identifier)
             var existingCandidate = await _candidateRepository.GetByEmailAsync(candidate.Email);
@@ -27,7 +27,16 @@ namespace SigmaAssignment.Services.Implementations
                 var newCandidate = _mapper.Map<CandidateDTO, Candidate>(candidate);
                 // Add a new candidate
                 await _candidateRepository.AddAsync(newCandidate);
+                candidate.IsUpdated = false;
             }
+            else
+            {
+                // update the existing candidate
+                var updatedCandidate = _mapper.Map(candidate, existingCandidate);
+                await _candidateRepository.UpdateAsync(updatedCandidate);
+                candidate.IsUpdated = true;
+            }
+            return candidate;
         }
     }
 }
